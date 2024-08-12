@@ -1,38 +1,470 @@
-.App {
-  text-align: center;
+/* FONTS */
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-ThinIta.eot");
+  src: local("Helvetica Now Display Thin Ita"),
+    local("HelveticaNowDisplay-ThinIta"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ThinIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ThinIta.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ThinIta.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ThinIta.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-Light.eot");
+  src: local("Helvetica Now Display Light"), local("HelveticaNowDisplay-Light"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Light.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Light.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Light.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-BoldIta.eot");
+  src: local("Helvetica Now Display Bold Ita"),
+    local("HelveticaNowDisplay-BoldIta"),
+    url("./fonts/helvetica/HelveticaNowDisplay-BoldIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-BoldIta.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-BoldIta.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-BoldIta.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-RegIta.eot");
+  src: local("Helvetica Now Display Reg Ita"),
+    local("HelveticaNowDisplay-RegIta"),
+    url("./fonts/helvetica/HelveticaNowDisplay-RegIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-RegIta.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-RegIta.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-RegIta.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-ExtLtIta.eot");
+  src: local("Helvetica Now Display ExtLt Ita"),
+    local("HelveticaNowDisplay-ExtLtIta"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtLtIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtLtIta.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtLtIta.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtLtIta.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-MedIta.eot");
+  src: local("Helvetica Now Display Med Ita"),
+    local("HelveticaNowDisplay-MedIta"),
+    url("./fonts/helvetica/HelveticaNowDisplay-MedIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-MedIta.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-MedIta.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-MedIta.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-ExtLt.eot");
+  src: local("Helvetica Now Display ExtLt"), local("HelveticaNowDisplay-ExtLt"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtLt.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtLt.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtLt.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtLt.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-ExtBlk.eot");
+  src: local("Helvetica Now Display ExtBlk"),
+    local("HelveticaNowDisplay-ExtBlk"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBlk.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBlk.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBlk.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBlk.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-Bold.eot");
+  src: local("Helvetica Now Display Bold"), local("HelveticaNowDisplay-Bold"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Bold.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Bold.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-ExtBdIta.eot");
+  src: local("Helvetica Now Display ExtBd Ita"),
+    local("HelveticaNowDisplay-ExtBdIta"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBdIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBdIta.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBdIta.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBdIta.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-Regular.eot");
+  src: local("Helvetica Now Display Regular"),
+    local("HelveticaNowDisplay-Regular"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Regular.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Regular.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-ExtBlkIta.eot");
+  src: local("Helvetica Now Display ExBlk It"),
+    local("HelveticaNowDisplay-ExtBlkIta"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBlkIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBlkIta.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBlkIta.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtBlkIta.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-Thin.eot");
+  src: local("Helvetica Now Display Thin"), local("HelveticaNowDisplay-Thin"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Thin.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Thin.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Thin.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-LightIta.eot");
+  src: local("Helvetica Now Display Light Ita"),
+    local("HelveticaNowDisplay-LightIta"),
+    url("./fonts/helvetica/HelveticaNowDisplay-LightIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-LightIta.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-LightIta.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-LightIta.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-ExtraBold.eot");
+  src: local("Helvetica Now Display ExtBd"),
+    local("HelveticaNowDisplay-ExtraBold"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtraBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtraBold.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtraBold.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-ExtraBold.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-Medium.eot");
+  src: local("Helvetica Now Display Medium"),
+    local("HelveticaNowDisplay-Medium"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Medium.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Medium.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-HairlineI.eot");
+  src: local("Helvetica Now Display Hairline"),
+    local("HelveticaNowDisplay-HairlineI"),
+    url("./fonts/helvetica/HelveticaNowDisplay-HairlineI.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-HairlineI.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-HairlineI.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-HairlineI.ttf")
+      format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-BlackIta.eot");
+  src: local("Helvetica Now Display Black Ita"),
+    local("HelveticaNowDisplay-BlackIta"),
+    url("./fonts/helvetica/HelveticaNowDisplay-BlackIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-BlackIta.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-BlackIta.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-BlackIta.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-Black.eot");
+  src: local("Helvetica Now Display Black"), local("HelveticaNowDisplay-Black"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Black.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Black.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Black.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./fonts/helvetica/HelveticaNowDisplay-Hairline.eot");
+  src: local("Helvetica Now Display Hairline"),
+    local("HelveticaNowDisplay-Hairline"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Hairline.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Hairline.woff2") format("woff2"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Hairline.woff") format("woff"),
+    url("./fonts/helvetica/HelveticaNowDisplay-Hairline.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "The Seasons";
+  src: url("./fonts/seasons/Fontspring-DEMO-theseasons-bdit.otf")
+    format("opentype");
+  src: local("The Seasons Bold"), local("TheSeasons-Bold"),
+    url("./fonts/seasons/Fontspring-DEMO-theseasons-bdit.otf")
+      format("opentype");
+}
+
+* {
+  font-family: "Helvetica Now Display", sans-serif;
+}
+
+/* variable */
+:root {
+  --primary-color: #152cba;
+  --secondary-color: #5a6ff5;
+  --background-color: #f8f5ee;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+}
+
+.navbar-link {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.navbar-link:hover {
+  color: var(--secondary-color);
+}
+
+.boxes {
+  background-color: rgba(255, 255, 255, 0);
+  background-image: linear-gradient(#afafbc53 0.9px, transparent 0.9px),
+    linear-gradient(to right, #afafbc53 0.9px, rgba(255, 255, 255, 0) 0.9px);
+  background-size: 18px 18px;
+
+  width: 100vw;
+  height: 42vh;
+
+  z-index: 0;
+}
+
+.category {
+  z-index: 100;
+  width: fit-content;
+  padding: 4px 8px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  color: var(--primary-color);
+
+  font-family: "The Seasons", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 100px;
+  border: 1px solid var(--primary-color);
+}
+
+.heading-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  letter-spacing: -1.5px;
+}
+
+.description {
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--primary-color);
+}
+
+.content-container {
+  position: relative;
+  --mask: linear-gradient(135deg, #0000 56.57px, #000 0);
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+  height: 630px;
+
+  /* add blue masking effect color */
+  background: linear-gradient(135deg, #152cba 56.57px, #152cba 0),
+    linear-gradient(to right, #152cba 56.57px, #f8f5ee 0);
+
   color: white;
+  align-content: end;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+  padding: 36px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content-container .title {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: 1.2;
+}
+
+.content-container .description {
+  color: white;
+  font-size: 1rem;
+  font-weight: normal;
+  letter-spacing: -0.5px;
+}
+.img-wrapper {
+  cursor: pointer;
+  background: #2b3fbe;
+}
+/* .img-wrapper {
+  background-color: var(--primary-color);
+  mix-blend-mode: multiply;
+}
+.img-wrapper img {
+  -webkit-filter: grayscale(100%) contrast(1.1);
+  filter: grayscale(100%) contrast(1.5) brightness(0.9);
+  mix-blend-mode: lighten;
+} */
+
+.blog-head {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  color: var(--primary-color);
+}
+
+.blog-head.list {
+  font-size: 1.2rem;
+}
+
+.blog-head h1 {
+  background: linear-gradient(0deg, slateblue, slateblue) no-repeat right bottom /
+    0 var(--bg-h);
+  transition: background-size 350ms;
+  --bg-h: 2px;
+}
+.blog-head h1:where(:hover, :focus-visible) {
+  background-size: 100% var(--bg-h);
+  background-position-x: left;
+}
+
+.blog-item .description {
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+.blog-item .tag {
+  font-weight: 700;
+  color: var(--primary-color);
+  padding: 3px 8px;
+  font-size: 12px;
+  border: 2px solid var(--primary-color);
+  border-radius: 100px;
+}
+
+.pagination {
+  color: var(--primary-color);
+}
+
+.footer {
+  background-color: var(--primary-color);
+}
+
+.bg-pria {
+  background-color: var(--primary-color);
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  flex-direction: column;
+}
+
+.link-active {
+  padding: 2px;
+  width: 2px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary-color);
+  text-align: center;
 }
