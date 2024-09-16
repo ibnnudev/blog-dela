@@ -2,11 +2,12 @@ import { Button, Navbar } from 'flowbite-react'
 import Logo from '../assets/logo.png'
 import IconUpload from '../icons/icon-upload'
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 export default function Header() {
   const location = useLocation();
   const { pathname } = location;
+  const navigate = useNavigate();
 
   return (
     <>
@@ -16,7 +17,9 @@ export default function Header() {
           <img src={Logo} alt="Flowbite React" className="h-8" />
         </Navbar.Brand>
         <div className="flex md:order-2">
-          <Button color='blue' className='rounded-full'>Unggah tulisan-mu&nbsp;&nbsp;<IconUpload /></Button>
+          <Button onClick={() => {
+            navigate('/login')
+          }} color='blue' className='rounded-full'>Unggah tulisan-mu&nbsp;&nbsp;<IconUpload /></Button>
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
@@ -26,12 +29,6 @@ export default function Header() {
               <div className={`${pathname === '/' ? 'link-active' : ''}`}></div>
             </div>
           </Navbar.Link>
-          {/* <Navbar.Link href="#" className='navbar-link'>
-            <div className='menu'>
-              <Link to={'/arsip'}>Arsip</Link>
-              <div className={`${pathname === '/arsip' ? 'link-active' : ''}`}></div>
-            </div>
-          </Navbar.Link> */}
           <Navbar.Link href="#" className='navbar-link'>
             <div className='menu'>
               <Link to={'/kategori'}>Jelajah</Link>

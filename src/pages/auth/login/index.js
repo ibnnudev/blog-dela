@@ -1,6 +1,32 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../context/auth-context';
+import WriterAPI from '../../../api/writer-api';
 
 export default function Login() {
+    const [user, setUser] = useState({
+        username: '',
+        password: ''
+    });
+    const { login } = useContext(AuthContext);
+
+    const onChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value });
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!user) return;
+
+        const response = await WriterAPI.login(user.username, user.password);
+        const { data, message, success } = response;
+
+        if (!success) {
+            return toast.error(message);
+        } else {
+            login(data.refreshToken);
+        }
+    }
 
     return (
         <section className='flex justify-center items-center h-screen'>
@@ -15,23 +41,23 @@ export default function Login() {
                             A rapid approach to collaborate in staging and provisional settings.
                         </p>
                     </div>
-                    <form className='mt-12'>
+                    <form className='mt-12' onSubmit={handleSubmit}>
                         <div className="space-y-3">
                             <div>
                                 <label htmlFor="username" className="block mb-3 text-sm font-medium text-black">
                                     Username
                                 </label>
-                                <input autoComplete={'off'} autoFocus={false} type="text" id="username" name='username' className="block w-full h-12 px-4 py-2 text-blue-500 duration-200 border rounded-full appearance-none bg-chalk border-zinc-300 placeholder-zinc-300 focus:border-zinc-300 focus:outline-none focus:ring-zinc-300 sm:text-sm" />
+                                <input autoComplete={'off'} autoFocus={false} type="text" onChange={onChange} id="username" name='username' className="block w-full h-12 px-4 py-2 text-blue-500 duration-200 border rounded-full appearance-none bg-chalk border-zinc-300 placeholder-zinc-300 focus:border-zinc-300 focus:outline-none focus:ring-zinc-300 sm:text-sm" />
                             </div>
                             <div className="col-span-full">
                                 <label htmlFor="password" className="block mb-3 text-sm font-medium text-black">
                                     Password
                                 </label>
-                                <input autoComplete={'off'} autoFocus={false} id="password" name="password" className="block w-full h-12 px-4 py-2 text-blue-500 duration-200 border rounded-full appearance-none bg-chalk border-zinc-300 placeholder-zinc-300 focus:border-zinc-300 focus:outline-none focus:ring-zinc-300 sm:text-sm" type="password" />
+                                <input autoComplete={'off'} autoFocus={false} id="password" onChange={onChange} name="password" className="block w-full h-12 px-4 py-2 text-blue-500 duration-200 border rounded-full appearance-none bg-chalk border-zinc-300 placeholder-zinc-300 focus:border-zinc-300 focus:outline-none focus:ring-zinc-300 sm:text-sm" type="password" />
                             </div>
                             <br />
                             <div className="col-span-full">
-                                <button type="button" className="inline-flex items-center justify-center w-full h-12 gap-3 px-5 py-3 font-medium text-white duration-200 bg-blue-500 rounded-full hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue">
+                                <button type="submit" className="inline-flex items-center justify-center w-full h-12 gap-3 px-5 py-3 font-medium text-white duration-200 bg-blue-500 rounded-full hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue">
                                     Sign in
                                 </button>
                             </div>
