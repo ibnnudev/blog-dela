@@ -60,7 +60,7 @@ export default function Index() {
                     <form className="space-y-6">
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="kategori" value="Kategori" />
+                                <Label htmlhtmlFor="kategori" value="Kategori" />
                             </div>
                             <TextInput id="kategori" type="text" autoComplete={false} required />
                         </div>

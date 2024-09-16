@@ -51,7 +51,7 @@ export default function Index() {
                                     <img
                                         className="w-8 h-8 rounded-full"
                                         src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                        alt="user photo"
+                                        alt="Neil Sims"
                                     />
                                 </button>
                             </div>
@@ -76,7 +76,7 @@ export default function Index() {
                                 <ul className="py-1" role="none">
                                     <li>
                                         <a
-                                            href="#"
+                                            href="#_"
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                             role="menuitem"
                                         >
@@ -85,7 +85,7 @@ export default function Index() {
                                     </li>
                                     <li>
                                         <a
-                                            href="#"
+                                            href="#_"
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                             role="menuitem"
                                         >
@@ -94,7 +94,7 @@ export default function Index() {
                                     </li>
                                     <li>
                                         <a
-                                            href="#"
+                                            href="#_"
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                             role="menuitem"
                                         >
@@ -103,7 +103,7 @@ export default function Index() {
                                     </li>
                                     <li>
                                         <a
-                                            href="#"
+                                            href="#_"
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                             role="menuitem"
                                         >
