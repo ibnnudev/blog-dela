@@ -18,7 +18,7 @@ export default function ModalComponent({ openModal, setOpenModal, setCategories,
 
     const handleChange = (e) => setCategoryName(e.target.value);
 
-    const handleAction = async () => {
+    const handleAction = async (type = 'save') => {
         if (!categoryName) {
             setError('Nama kategori harus diisi');
             return;
@@ -29,6 +29,18 @@ export default function ModalComponent({ openModal, setOpenModal, setCategories,
         const { data, message } = await apiCall(...payload);
 
         if (data) {
+            if (type === 'save & add') {
+                setCategoryName('');
+                setError('');
+                toast.success(message);
+
+                const { data: categories } = await CategoryAPI.getAll();
+                setCategories(categories);
+
+                setSelectedData(null);
+                return;
+            }
+
             setOpenModal(false);
             toast.success(message);
             setCategoryName('');
@@ -76,11 +88,23 @@ export default function ModalComponent({ openModal, setOpenModal, setCategories,
             <Modal.Footer>
                 <button
                     type="button"
-                    onClick={handleAction}
+                    onClick={() => handleAction('save')}
                     className="px-4 py-2 text-sm font-medium text-white bg-primary-700 rounded-lg hover:bg-primary-800"
                 >
                     {selectedData?.id ? 'Simpan Perubahan' : 'Tambah Kategori'}
                 </button>
+                {
+                    !selectedData?.id && (
+                        <button
+                            type="button"
+                            onClick={() => handleAction('save & add')}
+                            className="px-4 py-2 text-sm font-medium text-white bg-gray-700 rounded-lg hover:bg-gray-800"
+                        >
+                            Tambah & Tambah Lagi
+                        </button>
+                    )
+                }
+
                 <button
                     type="button"
                     onClick={closeModal}

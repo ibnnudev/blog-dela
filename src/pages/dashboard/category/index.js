@@ -1,10 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import ModalComponent from './components/modal';
-import TableHeader from '../components/table-header';
+import HeaderTable from './components/header-table';
+import CategoryTable from './components/category-table';
 import fetchCategories from './hooks/fetch-category';
 import DashbordLayout from '../components/dashboard-layout';
 import DeleteModalComponent from './components/delete-modal';
+import CategoryAPI from '../../../api/category-api';
+import { toast } from 'react-toastify';
+
+// Utility for modals to DRY
+const useModal = () => {
+    const [modalState, setModalState] = useState(false);
+    const [selectedData, setSelectedData] = useState(null);
+
+    const openModal = (data = null) => {
+        setSelectedData(data);
+        setModalState(true);
+    };
+
+    const closeModal = () => {
+        setSelectedData(null);
+        setModalState(false);
+    };
+
+    return { modalState, selectedData, openModal, closeModal, setSelectedData };
+};
 
 export default function Index() {
     const menu = [
@@ -12,93 +32,71 @@ export default function Index() {
         { name: 'Kategori', route: '/dashboard/kategori' }
     ];
 
-    const [openModal, setOpenModal] = useState(false);
-    const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [categories, setCategories] = useState([]);
-    const [selectedData, setSelectedData] = useState(null);
+    const [listSelected, setListSelected] = useState([]);
+
+    const categoryModal = useModal();
+    const deleteModal = useModal();
 
     useEffect(() => {
-        fetchCategories().then(data => setCategories(data.sort((a, b) => a.nama.localeCompare(b.nama))));
+        fetchCategories().then(data =>
+            setCategories(data.sort((a, b) => a.nama.localeCompare(b.nama)))
+        );
     }, []);
 
-    const handleModal = (data = null) => {
-        setSelectedData(data);
-        setOpenModal(true);
+    const handleSelect = (id) => {
+        setListSelected((prev) =>
+            prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+        );
     };
 
-    const handleDeleteModal = (data = null) => {
-        setSelectedData(data);
-        setOpenDeleteModal(true);
-    }
+    const handleSelectAll = (e) => {
+        setListSelected(e.target.checked ? categories.map(category => category.id) : []);
+    };
+
+    const handleDeleteListSelected = async () => {
+        try {
+            await Promise.all(listSelected.map(async (id) => {
+                const { message } = await CategoryAPI.remove(id);
+                toast.success(message);
+
+                const { data } = await CategoryAPI.getAll();
+                setCategories(data);
+                if (!toast.isActive('delete-category')) toast.success('Berhasil menghapus kategori', { toastId: 'delete-category' });
+            }));
+
+            setListSelected([]);
+        } catch (error) {
+            toast.error('Gagal menghapus kategori');
+        } finally {
+            setListSelected([]);
+        }
+    };
 
     return (
         <DashbordLayout breadcrumbList={menu}>
-            <TableHeader title="Daftar Kategori" description="Daftar kategori yang tersedia">
-                <button
-                    type="button"
-                    onClick={() => handleModal()}
-                    className="flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300"
-                >
-                    Tambah Kategori
-                </button>
-            </TableHeader>
-            <div className="overflow-x-auto">
-                <Table hoverable>
-                    <TableHead>
-                        <TableHeadCell>No</TableHeadCell>
-                        <TableHeadCell>Nama Kategori</TableHeadCell>
-                        <TableHeadCell>Aksi</TableHeadCell>
-                    </TableHead>
-                    <TableBody>
-                        {categories.length === 0 ? (
-                            <TableRow className="bg-white dark:bg-gray-800">
-                                <TableCell colSpan={3} className="text-center h-80 text-gray-400 dark:text-white">
-                                    Belum ada kategori
-                                </TableCell>
-                            </TableRow>
-                        ) : (
-                            categories.map((category, index) => (
-                                <TableRow key={index} className="bg-white dark:bg-gray-800">
-                                    <TableCell className="font-medium text-gray-900 dark:text-white">
-                                        {index + 1}
-                                    </TableCell>
-                                    <TableCell>{category.nama} {category.id}</TableCell>
-                                    <TableCell className='flex gap-2'>
-                                        <button
-                                            type="button"
-                                            onClick={() => handleModal(category)}
-                                            className="text-sm font-medium text-white bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded-lg"
-                                        >
-                                            Edit
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => handleDeleteModal(category)}
-                                            className="text-sm font-medium text-white bg-red-400 hover:bg-red-500 px-4 py-2 rounded-lg"
-                                        >
-                                            Hapus
-                                        </button>
-                                    </TableCell>
-                                </TableRow>
-                            ))
-                        )}
-                    </TableBody>
-                </Table>
-            </div>
-            <ModalComponent
-                openModal={openModal}
-                setOpenModal={setOpenModal}
-                setCategories={setCategories}
-                selectedData={selectedData}
-                setSelectedData={setSelectedData}
+            <HeaderTable listSelected={listSelected} handleDeleteListSelected={handleDeleteListSelected} openModal={categoryModal.openModal} />
+            <CategoryTable
+                categories={categories}
+                listSelected={listSelected}
+                handleSelect={handleSelect}
+                handleSelectAll={handleSelectAll}
+                openEditModal={categoryModal.openModal}
+                openDeleteModal={deleteModal.openModal}
             />
-
-            <DeleteModalComponent
-                openDeleteModal={openDeleteModal}
-                setOpenDeleteModal={setOpenDeleteModal}
-                selectedData={selectedData}
+            <ModalComponent
+                openModal={categoryModal.modalState}
+                setOpenModal={categoryModal.closeModal}
                 setCategories={setCategories}
-                setSelectedData={setSelectedData}
+                selectedData={categoryModal.selectedData}
+                setSelectedData={categoryModal.setSelectedData}
+            />
+            <DeleteModalComponent
+                openDeleteModal={deleteModal.modalState}
+                setOpenDeleteModal={deleteModal.closeModal}
+                selectedData={deleteModal.selectedData}
+                setCategories={setCategories}
+                setSelectedData={deleteModal.setSelectedData}
             />
         </DashbordLayout>
     );
