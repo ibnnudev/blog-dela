@@ -1,5 +1,5 @@
 import { Modal } from 'flowbite-react'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
 import CategoryAPI from '../../../../api/category-api'
 import { toast } from 'react-toastify'
